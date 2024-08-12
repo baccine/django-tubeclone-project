@@ -1,0 +1,16 @@
+<form action="" method="get">
+    <input type="text" name="q" value="{{ request.GET.q }}">
+    <input type="submit" value="검색">
+</form>
+
+{% for post in posts %}
+    <a href ="{% url 'tube_detail' post.pk %}">
+        <h1>{{ post.title }}</h1>
+        {% if post.thumbnail_image %}        
+        <img src="{{ post.thumbnail_image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        <p>{{ post.view_count }}회 · {{ post.created_at|timesince }} 전</p>
+        <p>{{ post.author }}</p>
+    </a>
+    <hr>
+{% endfor %}
